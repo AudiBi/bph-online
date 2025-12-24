@@ -1,0 +1,34 @@
+body {
+margin: 0;
+font-family: 'Segoe UI', Tahoma, sans-serif;
+background: #f9fafb;
+color: #333;
+}
+
+
+.bph-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: #003366; /* Couleur principale BPH */
+color: #fff;
+padding: 1rem 2rem;
+}
+
+
+.bph-header .logo {
+height: 40px;
+}
+
+
+.bph-header nav a {
+margin: 0 1rem;
+color: #fff;
+text-decoration: none;
+}
+
+
+.bph-header nav a.router-link-active {
+font-weight: bold;
+border-bottom: 2px solid #ffcc00; /* Accent couleur */
+}
