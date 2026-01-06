@@ -18,7 +18,7 @@
           Connexion à votre compte
         </h2>
 
-        <form class="space-y-6">
+        <form class="space-y-6" @submit.prevent="login">
 
           <!-- User -->
           <div>
@@ -26,6 +26,7 @@
               Nom d'utilisateur
             </label>
             <input
+              v-model="username"
               id="username"
               type="text"
               placeholder="Entrez votre nom d'utilisateur"
@@ -40,6 +41,7 @@
               Mot de passe
             </label>
             <input
+              v-model="password"
               id="password"
               type="password"
               placeholder="Entrez votre mot de passe"
@@ -111,8 +113,34 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 import bg from "@/assets/images/background-login.jpg";
 import Footer from "@/components/Footer.vue";
 import Navbar from "@/components/Navbar.vue";
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/vue/24/solid";
+
+const router = useRouter();
+
+const username = ref("");
+const password = ref("");
+const error = ref(false);
+
+// Identifiants par défaut
+const DEFAULT_USERNAME = "Jean";
+const DEFAULT_PASSWORD = "Jean@123";
+
+const login = () => {
+  if (username.value === DEFAULT_USERNAME && password.value === DEFAULT_PASSWORD) {
+    error.value = false;
+
+    // Optionnel : sauvegarder l'état de connexion
+    localStorage.setItem("auth", "true");
+
+    // Redirection vers le dashboard
+    router.push("/dashboard");
+  } else {
+    error.value = true;
+  }
+};
 </script>
