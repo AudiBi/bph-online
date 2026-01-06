@@ -48,6 +48,16 @@ const routes: Array<RouteRecordRaw> = [
     name: "Login",
     component: Login
   },
+  {
+    path: "/localiser",
+    name: "Localiser",
+    component: Localiser
+  },
+  {
+    path: "/contact",
+    name: "Contact",
+    component: Contact
+  },
 
   // 🔐 Client (avec layout)
   {
@@ -245,16 +255,7 @@ const routes: Array<RouteRecordRaw> = [
         name: "History",
         component: History
       },
-      {
-        path: "localiser",
-        name: "Localiser",
-        component: Localiser
-      },
-      {
-        path: "contact",
-        name: "Contact",
-        component: Contact
-      },
+     
     ]
   },
 

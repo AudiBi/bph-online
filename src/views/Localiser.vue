@@ -1,56 +1,3 @@
-<script setup lang="ts">
-import { ref, computed } from "vue"
-
-// Heroicons
-import {
-  MapPinIcon,
-  BuildingOfficeIcon,
-  MagnifyingGlassIcon,
-  ChevronDownIcon,
-  GlobeAmericasIcon
-} from "@heroicons/vue/24/outline"
-import Footer from "@/components/Footer.vue"
-import Navbar from "@/components/Navbar.vue"
-
-// Interface succursale
-interface Branch {
-  name: string
-  address: string
-  postal: string
-  city: string
-  department: string
-}
-
-// Liste des succursales
-const branches = ref<Branch[]>([
-  { name: "Siège Principal", address: "Angle Rue des Miracles & Rue du Quai", postal: "HT6110", city: "Port-au-Prince", department: "Ouest" },
-  { name: "BPH – Carrefour", address: "Rue du Centre, Carrefour", postal: "HT6112", city: "Carrefour", department: "Ouest" },
-  { name: "BPH – Cap-Haïtien", address: "Rue Cap-Haïtien", postal: "HT1110", city: "Cap-Haïtien", department: "Nord" },
-])
-
-// filtres
-const searchPostal = ref("")
-const selectedCity = ref("")
-const selectedDepartment = ref("")
-
-const cities = computed(() =>
-  Array.from(new Set(branches.value.map(b => b.city)))
-)
-
-const departments = computed(() =>
-  Array.from(new Set(branches.value.map(b => b.department)))
-)
-
-const filteredBranches = computed(() =>
-  branches.value.filter(b => {
-    const matchPostal = !searchPostal.value || b.postal.includes(searchPostal.value)
-    const matchCity = !selectedCity.value || b.city === selectedCity.value
-    const matchDept = !selectedDepartment.value || b.department === selectedDepartment.value
-    return matchPostal && matchCity && matchDept
-  })
-)
-</script>
-
 <template>
   <!-- Navbar -->
     <Navbar />
@@ -115,7 +62,7 @@ const filteredBranches = computed(() =>
     </section>
 
     <!-- LISTE DES SUCCURSALES -->
-    <section class="max-w-5xl mx-auto px-6 lg:px-8 pb-16">
+    <section class="max-w-5xl mx-auto px-6 lg:px-8 pb-16 mt-10">
       
       <h2 class="text-3xl font-bold text-[#003366] mb-6 flex items-center gap-2">
         <BuildingOfficeIcon class="w-8 h-8 text-bph-gold" />
@@ -152,6 +99,57 @@ const filteredBranches = computed(() =>
   <!-- Footer -->
   <Footer />
 </template>
+<script setup lang="ts">
+import { ref, computed } from "vue"
 
+// Heroicons
+import {
+  MapPinIcon,
+  BuildingOfficeIcon,
+  MagnifyingGlassIcon,
+  ChevronDownIcon,
+  GlobeAmericasIcon
+} from "@heroicons/vue/24/outline"
+import Footer from "@/components/Footer.vue"
+import Navbar from "@/components/Navbar.vue"
+
+// Interface succursale
+interface Branch {
+  name: string
+  address: string
+  postal: string
+  city: string
+  department: string
+}
+
+// Liste des succursales
+const branches = ref<Branch[]>([
+  { name: "Siège Principal", address: "Angle Rue des Miracles & Rue du Quai", postal: "HT6110", city: "Port-au-Prince", department: "Ouest" },
+  { name: "BPH – Carrefour", address: "Rue du Centre, Carrefour", postal: "HT6112", city: "Carrefour", department: "Ouest" },
+  { name: "BPH – Cap-Haïtien", address: "Rue Cap-Haïtien", postal: "HT1110", city: "Cap-Haïtien", department: "Nord" },
+])
+
+// filtres
+const searchPostal = ref("")
+const selectedCity = ref("")
+const selectedDepartment = ref("")
+
+const cities = computed(() =>
+  Array.from(new Set(branches.value.map(b => b.city)))
+)
+
+const departments = computed(() =>
+  Array.from(new Set(branches.value.map(b => b.department)))
+)
+
+const filteredBranches = computed(() =>
+  branches.value.filter(b => {
+    const matchPostal = !searchPostal.value || b.postal.includes(searchPostal.value)
+    const matchCity = !selectedCity.value || b.city === selectedCity.value
+    const matchDept = !selectedDepartment.value || b.department === selectedDepartment.value
+    return matchPostal && matchCity && matchDept
+  })
+)
+</script>
 <style scoped>
 </style>

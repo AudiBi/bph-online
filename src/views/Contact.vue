@@ -1,42 +1,3 @@
-<script setup lang="ts">
-import { ref } from "vue"
-
-// Heroicons
-import {
-  MapPinIcon,
-  PhoneIcon,
-  EnvelopeIcon,
-  ClockIcon,
-} from "@heroicons/vue/24/solid"
-import Navbar from "@/components/Navbar.vue"
-import Footer from "@/components/Footer.vue"
-
-const form = ref({
-  name: "",
-  email: "",
-  subject: "",
-  message: ""
-})
-
-const errors = ref<{ [k: string]: string }>({})
-
-const validate = () => {
-  errors.value = {}
-
-  if (!form.value.name) errors.value.name = "Votre nom est requis."
-  if (!form.value.email) errors.value.email = "Votre email est requis."
-  if (!form.value.subject) errors.value.subject = "Veuillez indiquer un sujet."
-  if (!form.value.message) errors.value.message = "Veuillez écrire un message."
-
-  return Object.keys(errors.value).length === 0
-}
-
-const submitForm = () => {
-  if (!validate()) return
-  alert("Votre message a été envoyé.")
-}
-</script>
-
 <template>
   <!-- Navbar -->
     <Navbar />
@@ -46,7 +7,7 @@ const submitForm = () => {
     <section class="bg-[#003366] text-white py-16 text-center">
       <h1 class="text-4xl font-bold">Contactez-nous</h1>
       <p class="text-lg mt-2 opacity-80">
-        La Banque Populaire d'Haïti est à votre service.
+        La Banque Populaire Haïtienne est à votre service.
       </p>
     </section>
 
@@ -181,3 +142,41 @@ const submitForm = () => {
      <!-- Footer -->
     <Footer />
 </template>
+<script setup lang="ts">
+import { ref } from "vue"
+
+// Heroicons
+import {
+  MapPinIcon,
+  PhoneIcon,
+  EnvelopeIcon,
+  ClockIcon,
+} from "@heroicons/vue/24/solid"
+import Navbar from "@/components/Navbar.vue"
+import Footer from "@/components/Footer.vue"
+
+const form = ref({
+  name: "",
+  email: "",
+  subject: "",
+  message: ""
+})
+
+const errors = ref<{ [k: string]: string }>({})
+
+const validate = () => {
+  errors.value = {}
+
+  if (!form.value.name) errors.value.name = "Votre nom est requis."
+  if (!form.value.email) errors.value.email = "Votre email est requis."
+  if (!form.value.subject) errors.value.subject = "Veuillez indiquer un sujet."
+  if (!form.value.message) errors.value.message = "Veuillez écrire un message."
+
+  return Object.keys(errors.value).length === 0
+}
+
+const submitForm = () => {
+  if (!validate()) return
+  alert("Votre message a été envoyé.")
+}
+</script>
