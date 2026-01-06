@@ -48,7 +48,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>NSFaceIDUsageDescription</key>
-	<string>Authentification sécurisée pour protéger votre compte</string>
+	<string>Accès sécurisé à votre compte bancaire BPH</string>
 
 </dict>
 </plist>

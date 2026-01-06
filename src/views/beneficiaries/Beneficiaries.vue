@@ -1,4 +1,13 @@
 <template>
+  <div class="space-y-6">
+  <!-- Header -->
+    <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
+      <div>
+        <h1 class="text-2xl font-bold text-primary">Bénéficiaires</h1>
+        <p class="text-sm text-muted">Gérez la liste de vos bénéficiaires pour effectuer des virements en toute simplicité</p>
+      </div>
+      <RouterLink to="/beneficiaries/new" class="btn-primary">Ajouter un bénéficiaire</RouterLink>
+    </div>
   <BaseCard title="Bénéficiaires">
     <!-- Table desktop -->
     <table class="hidden lg:table w-full text-sm">
@@ -31,6 +40,7 @@
       </BaseCard>
     </div>
   </BaseCard>
+  </div>
 </template>
 
 <script setup lang="ts">

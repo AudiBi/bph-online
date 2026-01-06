@@ -1,0 +1,14 @@
+{
+  "auth": {
+    "login": "Koneksyon sekirize",
+    "identifier": "Imèl oswa telefòn",
+    "password": "Modpas",
+    "submit": "Konekte",
+    "biometric": "Koneksyon biyometrik"
+  },
+  "common": {
+    "loading": "Chajman...",
+    "cancel": "Anile",
+    "confirm": "Konfime"
+  }
+}

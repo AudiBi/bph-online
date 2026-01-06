@@ -1,0 +1,14 @@
+{
+  "auth": {
+    "login": "Secure login",
+    "identifier": "Email or phone",
+    "password": "Password",
+    "submit": "Sign in",
+    "biometric": "Biometric login"
+  },
+  "common": {
+    "loading": "Loading...",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  }
+}

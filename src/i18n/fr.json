@@ -1,0 +1,14 @@
+{
+  "auth": {
+    "login": "Connexion sécurisée",
+    "identifier": "Email ou téléphone",
+    "password": "Mot de passe",
+    "submit": "Se connecter",
+    "biometric": "Connexion biométrique"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "cancel": "Annuler",
+    "confirm": "Confirmer"
+  }
+}

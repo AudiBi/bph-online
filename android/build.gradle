@@ -7,7 +7,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.1'
+        classpath 'com.android.tools.build:gradle:8.13.0'
+        
+        // Google services (Firebase)
         classpath 'com.google.gms:google-services:4.4.4'
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -15,6 +17,7 @@ buildscript {
     }
 }
 
+// Apply any extra variables if needed
 apply from: "variables.gradle"
 
 allprojects {
@@ -24,6 +27,15 @@ allprojects {
     }
 }
 
+subprojects {
+    tasks.withType(JavaCompile).configureEach {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+// Clean task
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+

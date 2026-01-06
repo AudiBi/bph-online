@@ -59,7 +59,7 @@
       </RouterLink>
 
       <!-- Relevés / Historique -->
-      <RouterLink
+      <!-- <RouterLink
         to="/accounts/statements"
         class="flex items-center gap-3 px-4 py-2 rounded hover:bg-bph-primary/10"
         :class="isActive('/accounts/statements') ? 'bg-bph-primary/15 text-bph-primary font-semibold' : 'text-gray-700'"
@@ -76,7 +76,7 @@
       >
         <ClockIcon class="w-5 h-5" />
         Historique
-      </RouterLink>
+      </RouterLink> -->
 
       <!-- Virements avec sous-menu -->
       <div>
@@ -127,7 +127,7 @@
         Bénéficiaires
       </RouterLink>
 
-      <RouterLink
+      <!-- <RouterLink
         to="/beneficiaries/new"
         class="flex items-center gap-3 px-4 py-2 rounded hover:bg-bph-primary/10"
         :class="isActive('/beneficiaries/new') ? 'bg-bph-primary/15 text-bph-primary font-semibold' : 'text-gray-700'"
@@ -135,6 +135,16 @@
       >
         <PlusCircleIcon class="w-5 h-5" />
         Ajouter bénéficiaire
+      </RouterLink> -->
+      <!-- Encaissements / Dépôts -->
+      <RouterLink
+        to="/deposits"
+        class="flex items-center gap-3 px-4 py-2 rounded hover:bg-bph-primary/10"
+        :class="isActive('/deposits') ? 'bg-bph-primary/15 text-bph-primary font-semibold' : 'text-gray-700'"
+        @click="close"
+      >
+        <ArrowRightCircleIcon class="w-5 h-5" />
+        Encaissements
       </RouterLink>
 
       <!-- Paiements avec sous-menu -->
@@ -150,6 +160,17 @@
         </button>
 
         <div v-if="paymentsOpen" class="ml-6 flex flex-col mt-1 space-y-1">
+          <RouterLink
+            to="/payments/card"
+            class="px-4 py-2 rounded hover:bg-bph-primary/10 text-gray-600"
+            :class="isActive('/payments/bills') ? 'text-bph-primary font-medium' : ''"
+            @click="close"
+          >
+            <span class="flex items-center gap-3">
+              <CreditCardIcon class="w-4 h-4" />
+              Par carte
+            </span>
+          </RouterLink>
           <RouterLink
             to="/payments/bills"
             class="px-4 py-2 rounded hover:bg-bph-primary/10 text-gray-600"
@@ -207,6 +228,20 @@
         <DocumentCheckIcon class="w-5 h-5" />
         Crédits
       </RouterLink>
+
+      <!-- Suivi -->
+      <RouterLink
+        to="/processes"
+        class="flex items-center gap-3 px-4 py-2 rounded hover:bg-bph-primary/10"
+        :class="isActive('/processes')
+          ? 'bg-bph-primary/15 text-bph-primary font-semibold'
+          : 'text-gray-700'"
+        @click="close"
+      >
+        <ClipboardDocumentCheckIcon class="w-5 h-5" />
+        Suivi des demandes
+      </RouterLink>
+
 
       <!-- Épargne -->
       <RouterLink
@@ -287,7 +322,16 @@
           </RouterLink>
         </div>
       </div>
-
+      <!-- Autres Opérations -->
+      <RouterLink
+        to="/other-operations"
+        class="flex items-center gap-3 px-4 py-2 rounded hover:bg-bph-primary/10"
+        :class="isActive('/other-operations') ? 'bg-bph-primary/15 text-bph-primary font-semibold' : 'text-gray-700'"
+        @click="close"
+      >
+        <CogIcon class="w-5 h-5" />
+        Autres opérations
+      </RouterLink>
 
       <!-- Sécurité -->
       <RouterLink
@@ -320,6 +364,7 @@ import {
   ClockIcon,
   ArrowsRightLeftIcon,
   CreditCardIcon,
+  ClipboardDocumentCheckIcon,
   DocumentCheckIcon,
   ChartBarIcon,
   BellIcon,
@@ -334,7 +379,8 @@ import {
   GlobeAltIcon,
   ReceiptPercentIcon,
   DevicePhoneMobileIcon,
-  ArrowRightCircleIcon
+  ArrowRightCircleIcon,
+  CogIcon
 } from "@heroicons/vue/24/outline"
 
 defineProps<{ isOpen?: boolean }>()

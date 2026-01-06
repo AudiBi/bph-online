@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router"
 import type { RouteRecordRaw } from "vue-router"
-
+import { authGuard } from './guards'
 import Login from "@/views/auth/Login.vue"
 import AppLayout from "@/layouts/AppLayout.vue"
 import Dashboard from "@/views/Dashboard.vue"
@@ -8,14 +8,12 @@ import Accounts from "@/views/accounts/Accounts.vue"
 import AccountDetails from "@/views/accounts/AccountDetails.vue"
 import Transactions from "@/views/accounts/Transactions.vue"
 import Statements from "@/views/Statements.vue"
-import Transfers from "@/views/transfers/Transfers.vue"
 import LocalTransfer from "@/views/transfers/LocalTransfer.vue"
 import InternationalTransfer from "@/views/transfers/InternationalTransfer.vue"
 import Beneficiaries from "@/views/beneficiaries/Beneficiaries.vue"
 import AddBeneficiary from "@/views/beneficiaries/AddBeneficiary.vue"
-import Payments from "@/views/payments/Payments.vue"
 import Bills from "@/views/payments/Bills.vue"
-import MobileRecharge from "@/views/payments/MobileRecharge.vue"
+import MobileRechargeView from "@/views/payments/MobileRechargeView.vue"
 import PaymentsHistory from "@/views/payments/PaymentsHistory.vue"
 import Cards from "@/views/cards/Cards.vue"
 import CardDetails from "@/views/cards/CardDetails.vue"
@@ -39,6 +37,9 @@ import NewTicket from "@/views/support/NewTicket.vue"
 import Profile from "@/views/Profile.vue"
 import ActivityLog from "@/views/ActivityLog.vue"
 import Security from "@/views/Security.vue"
+import CardPaymentsView from "@/views/payments/CardPaymentsView.vue"
+import DepositHistoryView from "@/views/deposit/DepositHistoryView.vue"
+import OtherOperationsView from "@/views/operations/OtherOperationsView.vue"
 
 const routes: Array<RouteRecordRaw> = [
   // 🔓 Public
@@ -82,11 +83,6 @@ const routes: Array<RouteRecordRaw> = [
         props: true
       },
       {
-        path: "transfers",
-        name: "Transfers",
-        component: Transfers
-      },
-      {
         path: "/transfers/local",
         name: "LocalTransfer",
         component: LocalTransfer
@@ -109,9 +105,14 @@ const routes: Array<RouteRecordRaw> = [
         component: AddBeneficiary
       },
       {
-        path: "payments",
-        name: "Payments",
-        component: Payments
+        path: "/deposits",
+        name: "DepositHistoryView",
+        component: DepositHistoryView
+      },
+      {
+        path: "payments/card",
+        name: "CardPaymentsView",
+        component: CardPaymentsView
       },
       {
         path: "payments/bills",
@@ -120,8 +121,8 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "payments/mobile",
-        name: "MobileRecharge",
-        component: MobileRecharge
+        name: "MobileRechargeView",
+        component: MobileRechargeView
       },
       {
         path: "payments/history",
@@ -165,7 +166,7 @@ const routes: Array<RouteRecordRaw> = [
         component: CreditApplication
       },
       {
-        path: "/credits/status",
+        path: "/processes",
         name: "CreditStatus",
         component: CreditStatus
       },
@@ -235,6 +236,11 @@ const routes: Array<RouteRecordRaw> = [
         component: ActivityLog
       },
       {
+        path: "/other-operations",
+        name: "OtherOperationsView",
+        component: OtherOperationsView
+      },
+      {
         path: "history",
         name: "History",
         component: History
@@ -248,9 +254,22 @@ const routes: Array<RouteRecordRaw> = [
         path: "contact",
         name: "Contact",
         component: Contact
-      }
+      },
+    ]
+  },
+
+  {
+    path: '/business',
+    beforeEnter: authGuard,
+    component: () => import('@/views/business/BusinessDashboard.vue'),
+    children: [
+      { path: 'open-account', component: () => import('@/views/business/BusinessAccountOpen.vue') },
+      { path: 'payroll', component: () => import('@/views/business/PayrollView.vue') },
+      { path: 'pos', component: () => import('@/views/business/PosView.vue') },
+      { path: 'financing', component: () => import('@/views/business/FinancingView.vue') }
     ]
   }
+
 ]
 
 const router = createRouter({

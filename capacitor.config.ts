@@ -1,9 +1,22 @@
-import type { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.example.app',
-  appName: 'bph-online',
-  webDir: 'dist'
+  appId: 'com.bph.online',
+  appName: 'BPH Online',
+  webDir: 'dist',
+  bundledWebRuntime: false,
+
+  server: {
+    androidScheme: 'https'
+  },
+
+  plugins: {
+    BiometricAuth: {
+      reason: 'Authentification sécurisée BPH',
+      cancelTitle: 'Annuler',
+      allowDeviceCredential: true
+    }
+  }
 };
 
 export default config;
